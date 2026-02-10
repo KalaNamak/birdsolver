@@ -257,8 +257,8 @@ const BirdSortSolver = () => {
     const updateBirdSize = () => {
       const width = window.innerWidth;
       if (width < 640) {
-        // Mobile: much smaller birds to fit 2 columns
-        setResponsiveBirdSize(Math.min(birdSize, 24));
+        // Mobile: larger birds (32px) for better visibility, fits 6 birds comfortably
+        setResponsiveBirdSize(32);
       } else if (width < 1024) {
         // Tablet: medium birds
         setResponsiveBirdSize(Math.min(birdSize, 36));
@@ -1275,8 +1275,8 @@ const BirdSortSolver = () => {
                   </button>
                 </div>
                 
-                {/* Bird Size Control */}
-                <div className="flex items-center gap-2 mt-3">
+                {/* Bird Size Control - Hidden on mobile where size is fixed */}
+                <div className="hidden sm:flex items-center gap-2 mt-3">
                   <label className="text-xs font-semibold text-gray-700">
                     Bird Size:
                   </label>
@@ -1654,16 +1654,6 @@ const BirdSortSolver = () => {
                         />
                       </div>
                       
-                      {solution.length === 0 && !discoveryMode && (
-                        <div className="absolute -top-1 -right-1">
-                          <button
-                            onClick={() => clearBranch(branchIndex)}
-                            className="p-1 text-gray-500 hover:text-red-500 hover:bg-red-50 rounded transition bg-white shadow"
-                          >
-                            <Trash2 size={14} />
-                          </button>
-                        </div>
-                      )}
                     </div>
                   );
                 })}
@@ -1847,12 +1837,16 @@ const BirdSortSolver = () => {
                   >
                     <div className="relative">
                       <div
-                        className={`w-16 h-16 rounded-xl border-3 shadow-md cursor-pointer hover:scale-105 transition ${
+                        className={`rounded-full border-2 shadow-md cursor-pointer hover:scale-105 transition ${
                           selectedBirdType === birdType && (editMode || discoveryMode)
                             ? "border-purple-500 ring-4 ring-purple-300"
-                            : "border-gray-300"
+                            : "border-gray-400"
                         }`}
-                        style={getBirdStyle(birdType)}
+                        style={{
+                          width: `${responsiveBirdSize}px`,
+                          height: `${responsiveBirdSize}px`,
+                          ...getBirdStyle(birdType)
+                        }}
                         onClick={() => {
                           if (editMode || discoveryMode) {
                             setSelectedBirdType(birdType);
