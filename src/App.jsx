@@ -257,13 +257,10 @@ const BirdSortSolver = () => {
     const updateBirdSize = () => {
       const width = window.innerWidth;
       if (width < 640) {
-        // Mobile: larger birds (32px) for better visibility, fits 6 birds comfortably
+        // Mobile: fixed 32px for better visibility, fits 6 birds comfortably
         setResponsiveBirdSize(32);
-      } else if (width < 1024) {
-        // Tablet: medium birds
-        setResponsiveBirdSize(Math.min(birdSize, 36));
       } else {
-        // Desktop: user preference
+        // Tablet and Desktop: user preference from slider (32-64px)
         setResponsiveBirdSize(birdSize);
       }
     };
@@ -1566,7 +1563,7 @@ const BirdSortSolver = () => {
                                   ref={(el) => {
                                     if (el) birdRefs.current[`${branchIndex}-${i}`] = el;
                                   }}
-                                  className={`rounded-full border-2 flex-shrink-0 relative ${
+                                  className={`rounded-lg border-2 flex-shrink-0 relative ${
                                     isHidden
                                       ? isExposed
                                         ? "border-yellow-400 border-dashed cursor-pointer hover:ring-2 hover:ring-yellow-500 bg-yellow-50"
@@ -1837,7 +1834,7 @@ const BirdSortSolver = () => {
                   >
                     <div className="relative">
                       <div
-                        className={`rounded-full border-2 shadow-md cursor-pointer hover:scale-105 transition ${
+                        className={`rounded-lg border-2 shadow-md cursor-pointer hover:scale-105 transition ${
                           selectedBirdType === birdType && (editMode || discoveryMode)
                             ? "border-purple-500 ring-4 ring-purple-300"
                             : "border-gray-400"
@@ -1860,7 +1857,7 @@ const BirdSortSolver = () => {
                             : "Click to upload image"
                         }
                       />
-                      <div className="absolute -top-1 -right-1 bg-blue-600 text-white text-xs font-bold rounded-full w-5 h-5 flex items-center justify-center">
+                      <div className="absolute -top-1 -right-1 bg-blue-600 text-white font-bold rounded-full flex items-center justify-center text-[9px] w-4 h-4 sm:text-xs sm:w-5 sm:h-5">
                         {birdCounts[birdType] || 0}
                       </div>
                       <input
@@ -2117,7 +2114,7 @@ const BirdSortSolver = () => {
           return (
             <div
               key={flyingBird.id}
-              className="fixed rounded-full border-2 border-gray-400 shadow-2xl pointer-events-none"
+              className="fixed rounded-lg border-2 border-gray-400 shadow-2xl pointer-events-none"
               style={{
                 width: `${responsiveBirdSize}px`,
                 height: `${responsiveBirdSize}px`,
