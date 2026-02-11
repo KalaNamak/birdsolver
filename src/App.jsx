@@ -1,25 +1,25 @@
 import React, { useState, useRef, useEffect } from 'react';
 
 // Lucide React Icons (inline SVG components)
-const ChevronLeft = (props) => React.createElement('svg', {...props, xmlns: "http://www.w3.org/2000/svg", width: "24", height: "24", viewBox: "0 0 24 24", fill: "none", stroke: "currentColor", strokeWidth: "2", strokeLinecap: "round", strokeLinejoin: "round"}, React.createElement('path', {d: "m15 18-6-6 6-6"}));
+const ChevronLeft = (props) => React.createElement('svg', { ...props, xmlns: "http://www.w3.org/2000/svg", width: "24", height: "24", viewBox: "0 0 24 24", fill: "none", stroke: "currentColor", strokeWidth: "2", strokeLinecap: "round", strokeLinejoin: "round" }, React.createElement('path', { d: "m15 18-6-6 6-6" }));
 
-const ChevronRight = (props) => React.createElement('svg', {...props, xmlns: "http://www.w3.org/2000/svg", width: "24", height: "24", viewBox: "0 0 24 24", fill: "none", stroke: "currentColor", strokeWidth: "2", strokeLinecap: "round", strokeLinejoin: "round"}, React.createElement('path', {d: "m9 18 6-6-6-6"}));
+const ChevronRight = (props) => React.createElement('svg', { ...props, xmlns: "http://www.w3.org/2000/svg", width: "24", height: "24", viewBox: "0 0 24 24", fill: "none", stroke: "currentColor", strokeWidth: "2", strokeLinecap: "round", strokeLinejoin: "round" }, React.createElement('path', { d: "m9 18 6-6-6-6" }));
 
-const Play = (props) => React.createElement('svg', {...props, xmlns: "http://www.w3.org/2000/svg", width: "24", height: "24", viewBox: "0 0 24 24", fill: "none", stroke: "currentColor", strokeWidth: "2", strokeLinecap: "round", strokeLinejoin: "round"}, React.createElement('polygon', {points: "6 3 20 12 6 21 6 3"}));
+const Play = (props) => React.createElement('svg', { ...props, xmlns: "http://www.w3.org/2000/svg", width: "24", height: "24", viewBox: "0 0 24 24", fill: "none", stroke: "currentColor", strokeWidth: "2", strokeLinecap: "round", strokeLinejoin: "round" }, React.createElement('polygon', { points: "6 3 20 12 6 21 6 3" }));
 
-const RotateCcw = (props) => React.createElement('svg', {...props, xmlns: "http://www.w3.org/2000/svg", width: "24", height: "24", viewBox: "0 0 24 24", fill: "none", stroke: "currentColor", strokeWidth: "2", strokeLinecap: "round", strokeLinejoin: "round"}, React.createElement('path', {d: "M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"}), React.createElement('path', {d: "M3 3v5h5"}));
+const RotateCcw = (props) => React.createElement('svg', { ...props, xmlns: "http://www.w3.org/2000/svg", width: "24", height: "24", viewBox: "0 0 24 24", fill: "none", stroke: "currentColor", strokeWidth: "2", strokeLinecap: "round", strokeLinejoin: "round" }, React.createElement('path', { d: "M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8" }), React.createElement('path', { d: "M3 3v5h5" }));
 
-const Plus = (props) => React.createElement('svg', {...props, xmlns: "http://www.w3.org/2000/svg", width: "24", height: "24", viewBox: "0 0 24 24", fill: "none", stroke: "currentColor", strokeWidth: "2", strokeLinecap: "round", strokeLinejoin: "round"}, React.createElement('path', {d: "M5 12h14"}), React.createElement('path', {d: "M12 5v14"}));
+const Plus = (props) => React.createElement('svg', { ...props, xmlns: "http://www.w3.org/2000/svg", width: "24", height: "24", viewBox: "0 0 24 24", fill: "none", stroke: "currentColor", strokeWidth: "2", strokeLinecap: "round", strokeLinejoin: "round" }, React.createElement('path', { d: "M5 12h14" }), React.createElement('path', { d: "M12 5v14" }));
 
-const Minus = (props) => React.createElement('svg', {...props, xmlns: "http://www.w3.org/2000/svg", width: "24", height: "24", viewBox: "0 0 24 24", fill: "none", stroke: "currentColor", strokeWidth: "2", strokeLinecap: "round", strokeLinejoin: "round"}, React.createElement('path', {d: "M5 12h14"}));
+const Minus = (props) => React.createElement('svg', { ...props, xmlns: "http://www.w3.org/2000/svg", width: "24", height: "24", viewBox: "0 0 24 24", fill: "none", stroke: "currentColor", strokeWidth: "2", strokeLinecap: "round", strokeLinejoin: "round" }, React.createElement('path', { d: "M5 12h14" }));
 
-const Trash2 = (props) => React.createElement('svg', {...props, xmlns: "http://www.w3.org/2000/svg", width: "24", height: "24", viewBox: "0 0 24 24", fill: "none", stroke: "currentColor", strokeWidth: "2", strokeLinecap: "round", strokeLinejoin: "round"}, React.createElement('path', {d: "M3 6h18"}), React.createElement('path', {d: "M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"}), React.createElement('path', {d: "M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"}), React.createElement('line', {x1: "10", x2: "10", y1: "11", y2: "17"}), React.createElement('line', {x1: "14", x2: "14", y1: "11", y2: "17"}));
+const Trash2 = (props) => React.createElement('svg', { ...props, xmlns: "http://www.w3.org/2000/svg", width: "24", height: "24", viewBox: "0 0 24 24", fill: "none", stroke: "currentColor", strokeWidth: "2", strokeLinecap: "round", strokeLinejoin: "round" }, React.createElement('path', { d: "M3 6h18" }), React.createElement('path', { d: "M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6" }), React.createElement('path', { d: "M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2" }), React.createElement('line', { x1: "10", x2: "10", y1: "11", y2: "17" }), React.createElement('line', { x1: "14", x2: "14", y1: "11", y2: "17" }));
 
-const Lightbulb = (props) => React.createElement('svg', {...props, xmlns: "http://www.w3.org/2000/svg", width: "24", height: "24", viewBox: "0 0 24 24", fill: "none", stroke: "currentColor", strokeWidth: "2", strokeLinecap: "round", strokeLinejoin: "round"}, React.createElement('path', {d: "M15 14c.2-1 .7-1.7 1.5-2.5 1-.9 1.5-2.2 1.5-3.5A6 6 0 0 0 6 8c0 1 .2 2.2 1.5 3.5.7.7 1.3 1.5 1.5 2.5"}), React.createElement('path', {d: "M9 18h6"}), React.createElement('path', {d: "M10 22h4"}));
+const Lightbulb = (props) => React.createElement('svg', { ...props, xmlns: "http://www.w3.org/2000/svg", width: "24", height: "24", viewBox: "0 0 24 24", fill: "none", stroke: "currentColor", strokeWidth: "2", strokeLinecap: "round", strokeLinejoin: "round" }, React.createElement('path', { d: "M15 14c.2-1 .7-1.7 1.5-2.5 1-.9 1.5-2.2 1.5-3.5A6 6 0 0 0 6 8c0 1 .2 2.2 1.5 3.5.7.7 1.3 1.5 1.5 2.5" }), React.createElement('path', { d: "M9 18h6" }), React.createElement('path', { d: "M10 22h4" }));
 
-const Eye = (props) => React.createElement('svg', {...props, xmlns: "http://www.w3.org/2000/svg", width: "24", height: "24", viewBox: "0 0 24 24", fill: "none", stroke: "currentColor", strokeWidth: "2", strokeLinecap: "round", strokeLinejoin: "round"}, React.createElement('path', {d: "M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"}), React.createElement('circle', {cx: "12", cy: "12", r: "3"}));
+const Eye = (props) => React.createElement('svg', { ...props, xmlns: "http://www.w3.org/2000/svg", width: "24", height: "24", viewBox: "0 0 24 24", fill: "none", stroke: "currentColor", strokeWidth: "2", strokeLinecap: "round", strokeLinejoin: "round" }, React.createElement('path', { d: "M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z" }), React.createElement('circle', { cx: "12", cy: "12", r: "3" }));
 
-const EyeOff = (props) => React.createElement('svg', {...props, xmlns: "http://www.w3.org/2000/svg", width: "24", height: "24", viewBox: "0 0 24 24", fill: "none", stroke: "currentColor", strokeWidth: "2", strokeLinecap: "round", strokeLinejoin: "round"}, React.createElement('path', {d: "M9.88 9.88a3 3 0 1 0 4.24 4.24"}), React.createElement('path', {d: "M10.73 5.08A10.43 10.43 0 0 1 12 5c7 0 10 7 10 7a13.16 13.16 0 0 1-1.67 2.68"}), React.createElement('path', {d: "M6.61 6.61A13.526 13.526 0 0 0 2 12s3 7 10 7a9.74 9.74 0 0 0 5.39-1.61"}), React.createElement('line', {x1: "2", x2: "22", y1: "2", y2: "22"}));
+const EyeOff = (props) => React.createElement('svg', { ...props, xmlns: "http://www.w3.org/2000/svg", width: "24", height: "24", viewBox: "0 0 24 24", fill: "none", stroke: "currentColor", strokeWidth: "2", strokeLinecap: "round", strokeLinejoin: "round" }, React.createElement('path', { d: "M9.88 9.88a3 3 0 1 0 4.24 4.24" }), React.createElement('path', { d: "M10.73 5.08A10.43 10.43 0 0 1 12 5c7 0 10 7 10 7a13.16 13.16 0 0 1-1.67 2.68" }), React.createElement('path', { d: "M6.61 6.61A13.526 13.526 0 0 0 2 12s3 7 10 7a9.74 9.74 0 0 0 5.39-1.61" }), React.createElement('line', { x1: "2", x2: "22", y1: "2", y2: "22" }));
 
 
 // ========== HIDDEN MODE HELPER FUNCTIONS ==========
@@ -40,17 +40,17 @@ const revealBirdAndSameType = (branches, branchIndex, position, visibilityMap) =
   const newVisibility = { ...visibilityMap };
   const key = `${branchIndex}-${position}`;
   const bird = branches[branchIndex][position];
-  
+
   // Reveal this bird
   newVisibility[key] = true;
-  
+
   // If this bird has the same type as adjacent birds below it, reveal them too
   if (position > 0) {
     let checkPosition = position - 1;
     while (checkPosition >= 0) {
       const checkBird = branches[branchIndex][checkPosition];
       const checkKey = `${branchIndex}-${checkPosition}`;
-      
+
       if (checkBird === bird) {
         newVisibility[checkKey] = true;
         checkPosition--;
@@ -59,19 +59,19 @@ const revealBirdAndSameType = (branches, branchIndex, position, visibilityMap) =
       }
     }
   }
-  
+
   return newVisibility;
 };
 
 const updateVisibilityAfterMove = (newBranches, oldVisibility) => {
   let newVisibility = { ...oldVisibility };
-  
+
   // For each branch, check if the top bird should be visible and reveal adjacent same-type birds
   newBranches.forEach((branch, branchIndex) => {
     if (branch.length > 0) {
       const topPosition = branch.length - 1;
       const topKey = `${branchIndex}-${topPosition}`;
-      
+
       // If top bird exists and wasn't visible, make it visible along with same-type adjacent birds
       if (branch[topPosition] !== null && branch[topPosition] !== undefined) {
         if (!newVisibility[topKey]) {
@@ -80,7 +80,7 @@ const updateVisibilityAfterMove = (newBranches, oldVisibility) => {
       }
     }
   });
-  
+
   return newVisibility;
 };
 
@@ -132,32 +132,32 @@ const findMovesToExposeHidden = (initialBranches, birdsPerBranch, maxDepth = 20)
   if (currentExposed.length > 0) {
     return { success: true, moves: [], exposedPosition: currentExposed[0] };
   }
-  
+
   const queue = [{ state: initialBranches.map(b => [...b]), moves: [], depth: 0 }];
   const visited = new Set([JSON.stringify(initialBranches)]);
-  
+
   while (queue.length > 0) {
     const current = queue.shift();
     if (current.depth >= maxDepth) continue;
-    
+
     for (let from = 0; from < current.state.length; from++) {
       for (let to = 0; to < current.state.length; to++) {
         if (from === to) continue;
         if (!isValidDiscoveryMove(current.state, from, to, birdsPerBranch)) continue;
-        
+
         const consecutiveCount = countConsecutiveKnownBirds(current.state[from]);
         const availableSpace = birdsPerBranch - current.state[to].length;
         const birdsToMove = Math.min(consecutiveCount, availableSpace);
-        
+
         const newState = current.state.map(b => [...b]);
         for (let i = 0; i < birdsToMove; i++) {
           newState[to].push(newState[from].pop());
         }
-        
+
         const stateStr = JSON.stringify(newState);
         if (visited.has(stateStr)) continue;
         visited.add(stateStr);
-        
+
         const exposedPositions = findExposedHiddenPositions(newState);
         if (exposedPositions.length > 0) {
           return {
@@ -166,7 +166,7 @@ const findMovesToExposeHidden = (initialBranches, birdsPerBranch, maxDepth = 20)
             exposedPosition: exposedPositions[0]
           };
         }
-        
+
         queue.push({
           state: newState,
           moves: [...current.moves, { from, to, birdsToMove, state: newState }],
@@ -215,7 +215,7 @@ const BirdSortSolver = () => {
   const [unsurePositions, setUnsurePositions] = useState(new Set());
   const [unsureColor, setUnsureColor] = useState("#A855F7"); // Default purple
   const [birdSize, setBirdSize] = useState(48); // Default 48px, adjustable 32-64px
-  
+
   // Database state - single JSON file with everything
   const [database, setDatabase] = useState({
     theme: {
@@ -227,7 +227,7 @@ const BirdSortSolver = () => {
     puzzles: []
   });
   const [databaseFileHandle, setDatabaseFileHandle] = useState(null); // File handle for persistent location
-  
+
   // Discovery mode state
   const [discoveryMode, setDiscoveryMode] = useState(false);
   const [discoveryMoves, setDiscoveryMoves] = useState([]);
@@ -236,23 +236,23 @@ const BirdSortSolver = () => {
   const [discoveredBirds, setDiscoveredBirds] = useState({});
   const [originalPositions, setOriginalPositions] = useState([]);
   const [targetHiddenPosition, setTargetHiddenPosition] = useState(null);
-  
+
   // Hidden mode state for solution playback
   const [hiddenMode, setHiddenMode] = useState(false);
   const [birdVisibility, setBirdVisibility] = useState({});
-  
+
   // Solution playback state
   const [isPlaying, setIsPlaying] = useState(false);
   const [playbackSpeed, setPlaybackSpeed] = useState(1000); // milliseconds per step
   const [animating, setAnimating] = useState(false); // Track when animations are happening
   const [flyingBirds, setFlyingBirds] = useState([]); // Track birds currently flying
-  
+
   const fileInputRefs = useRef({});
   const playbackIntervalRef = useRef(null);
-  
+
   // Responsive bird size based on screen width
   const [responsiveBirdSize, setResponsiveBirdSize] = useState(birdSize);
-  
+
   useEffect(() => {
     const updateBirdSize = () => {
       const width = window.innerWidth;
@@ -264,7 +264,7 @@ const BirdSortSolver = () => {
         setResponsiveBirdSize(birdSize);
       }
     };
-    
+
     updateBirdSize();
     window.addEventListener('resize', updateBirdSize);
     return () => window.removeEventListener('resize', updateBirdSize);
@@ -297,22 +297,22 @@ const BirdSortSolver = () => {
   // Trigger flying animation when step changes
   useEffect(() => {
     if ((currentStep > 0 && solution.length > 0) || (discoveryStep > 0 && discoveryMoves.length > 0)) {
-      const move = solution.length > 0 && currentStep > 0 
+      const move = solution.length > 0 && currentStep > 0
         ? solution[currentStep - 1]
         : discoveryMoves[discoveryStep - 1];
-      
+
       if (!move) return;
-      
+
       // FIX: Use correct previous state for both solution and discovery modes
       const prevState = solution.length > 0 && currentStep > 0
         ? (currentStep > 1 ? solution[currentStep - 2].state : branches)
         : discoveryStep > 0
-        ? (discoveryStep > 1 ? discoveryMoves[discoveryStep - 2].state : branches)
-        : branches;
-      
+          ? (discoveryStep > 1 ? discoveryMoves[discoveryStep - 2].state : branches)
+          : branches;
+
       const birdsToMove = move.birdsToMove || 1;
       const fromBranch = prevState[move.from];
-      
+
       // Create flying bird objects
       const newFlyingBirds = [];
       for (let i = 0; i < birdsToMove; i++) {
@@ -328,23 +328,23 @@ const BirdSortSolver = () => {
           });
         }
       }
-      
+
       setFlyingBirds(newFlyingBirds);
       setAnimating(true);
-      
+
       // Clear flying birds and update animating state after animation completes
       // Animation is 600ms + max delay of 200ms for multiple birds = 800ms total
       const timer = setTimeout(() => {
         setFlyingBirds([]);
         setAnimating(false);
-        
+
         // Update visibility map if in hidden mode (not in discovery mode)
         if (hiddenMode && !discoveryMode && currentStep > 0) {
           const currentState = solution[currentStep - 1].state;
           setBirdVisibility(prev => updateVisibilityAfterMove(currentState, prev));
         }
       }, 800);
-      
+
       return () => clearTimeout(timer);
     } else {
       setFlyingBirds([]);
@@ -406,7 +406,7 @@ const BirdSortSolver = () => {
       // Check if File System Access API is supported
       if ('showSaveFilePicker' in window) {
         let fileHandle = databaseFileHandle;
-        
+
         // If no file handle, or user wants to choose new location
         if (!fileHandle) {
           fileHandle = await window.showSaveFilePicker({
@@ -418,12 +418,12 @@ const BirdSortSolver = () => {
           });
           setDatabaseFileHandle(fileHandle);
         }
-        
+
         // Write to file
         const writable = await fileHandle.createWritable();
         await writable.write(JSON.stringify(newDatabase, null, 2));
         await writable.close();
-        
+
         return true;
       } else {
         // Fallback to download
@@ -450,19 +450,19 @@ const BirdSortSolver = () => {
           }],
           multiple: false
         });
-        
+
         setDatabaseFileHandle(fileHandle);
-        
+
         const file = await fileHandle.getFile();
         const text = await file.text();
         const data = JSON.parse(text);
-        
+
         // Validate and load
         setDatabase({
           theme: data.theme || database.theme,
           puzzles: data.puzzles || []
         });
-        
+
         alert(`Database loaded! Found ${data.puzzles?.length || 0} puzzles.`);
       } else {
         // Fallback: show file input
@@ -491,7 +491,7 @@ const BirdSortSolver = () => {
     }
 
     const existingIndex = database.puzzles.findIndex(p => p.name === name);
-    
+
     if (existingIndex >= 0) {
       if (!window.confirm(`A puzzle named "${name}" already exists. Overwrite?`)) {
         return;
@@ -570,7 +570,7 @@ const BirdSortSolver = () => {
     if (database.theme.customBirdImages) setCustomBirdImages(database.theme.customBirdImages);
     if (database.theme.birdSize) setBirdSize(database.theme.birdSize);
     if (database.theme.unsureColor) setUnsureColor(database.theme.unsureColor);
-    
+
     alert("Theme loaded from database!");
   };
 
@@ -649,41 +649,41 @@ const BirdSortSolver = () => {
     if (discoveryMode) {
       const currentState = discoveryMoves.length > 0 && discoveryStep === discoveryMoves.length
         ? discoveryMoves[discoveryStep - 1].state : branches;
-      
+
       const bird = currentState[branchIndex]?.[positionIndex];
       if (bird !== null && bird !== undefined) return;
-      
+
       const exposedPositions = findExposedHiddenPositions(currentState);
       const isExposed = exposedPositions.some(
         pos => pos.branchIndex === branchIndex && pos.positionIndex === positionIndex
       );
-      
+
       if (!isExposed) {
         setMessage("This spot is not exposed yet. Click 'Find Next Hidden' first.");
         return;
       }
-      
+
       const key = `${branchIndex}-${positionIndex}`;
       const newDiscovered = { ...discoveredBirds, [key]: selectedBirdType };
       setDiscoveredBirds(newDiscovered);
-      
+
       const newOriginal = originalPositions.map(b => [...b]);
       newOriginal[branchIndex][positionIndex] = selectedBirdType;
       setOriginalPositions(newOriginal);
-      
+
       // DON'T reset - keep the current state and just place the new bird
       // This allows chaining discoveries from the current position
       const continuedState = currentState.map(b => [...b]);
       continuedState[branchIndex][positionIndex] = selectedBirdType;
-      
+
       setBranches(continuedState);
       setDiscoveryMoves([]);
       setDiscoveryStep(0);
       setTargetHiddenPosition(null);
-      
+
       const discovered = Object.keys(newDiscovered).length;
       const total = originalPositions.reduce((sum, branch) => sum + branch.length, 0);
-      
+
       if (discovered >= total) {
         setMessage("🎉 All birds discovered! Click 'Exit Discovery Mode'.");
       } else {
@@ -714,7 +714,7 @@ const BirdSortSolver = () => {
                 });
               });
               setBranches(resetToStart);
-              
+
               // FIX BUG #2: Auto-start next discovery chain if more birds remain
               const remainingBirds = total - discovered;
               if (remainingBirds > 0) {
@@ -744,7 +744,7 @@ const BirdSortSolver = () => {
       }
       return;
     }
-    
+
     // Normal edit mode
     if (solution.length > 0 || !editMode) return;
     const bird = branches[branchIndex][positionIndex];
@@ -911,12 +911,12 @@ const BirdSortSolver = () => {
         if (isComplete(current.state)) {
           setSolution(current.moves);
           setCurrentStep(0);
-          
+
           // Initialize visibility map if hidden mode is enabled
           if (hiddenMode) {
             setBirdVisibility(initializeVisibilityMap(branches));
           }
-          
+
           console.log(
             `Solution found in ${current.moves.length} moves at depth ${depth}!`,
           );
@@ -1020,7 +1020,7 @@ const BirdSortSolver = () => {
   const enableDiscoveryMode = () => {
     // Save the current state as what we're discovering
     setOriginalPositions(branches.map(b => [...b]));
-    
+
     // Initialize discoveredBirds with currently placed birds
     const initialDiscovered = {};
     branches.forEach((branch, bIdx) => {
@@ -1032,7 +1032,7 @@ const BirdSortSolver = () => {
       });
     });
     setDiscoveredBirds(initialDiscovered);
-    
+
     // Keep branches as they are - don't hide anything
     // The user starts with whatever they've already placed
     setDiscoveryMode(true);
@@ -1041,12 +1041,12 @@ const BirdSortSolver = () => {
     setCurrentStep(0);
     setDiscoveryMoves([]);
     setDiscoveryStep(0);
-    
+
     // Calculate total birds and how many still need to be discovered
     const totalBirds = branches.reduce((sum, branch) => sum + branch.length, 0);
     const alreadyPlaced = Object.keys(initialDiscovered).length;
     const remaining = totalBirds - alreadyPlaced;
-    
+
     setMessage(`Reveal mode! ${alreadyPlaced} birds already placed, ${remaining} still hidden.`);
   };
 
@@ -1064,7 +1064,7 @@ const BirdSortSolver = () => {
 
   const findNextHiddenBird = () => {
     setMessage("Searching...");
-    
+
     // First, reset branches to clean state with only discovered birds (start a new discovery chain)
     const cleanState = originalPositions.map((branch, bIdx) => {
       if (branch.length === 0) return branch;
@@ -1075,17 +1075,17 @@ const BirdSortSolver = () => {
         return null; // Hide everything else
       });
     });
-    
+
     setBranches(cleanState);
     setDiscoveryMoves([]);
     setDiscoveryStep(0);
-    
+
     const result = findMovesToExposeHidden(cleanState, birdsPerBranch);
-    
+
     if (result.success) {
       // Set the target position that will be revealed
       setTargetHiddenPosition(result.exposedPosition);
-      
+
       if (result.moves.length === 0) {
         setMessage("A hidden bird is exposed! Select bird and click (?).");
       } else {
@@ -1103,7 +1103,7 @@ const BirdSortSolver = () => {
   const startPlayback = () => {
     if (solution.length === 0) return;
     setIsPlaying(true);
-    
+
     playbackIntervalRef.current = setInterval(() => {
       setCurrentStep((prev) => {
         if (prev >= solution.length) {
@@ -1156,7 +1156,7 @@ const BirdSortSolver = () => {
   const toggleHiddenMode = () => {
     const newHiddenMode = !hiddenMode;
     setHiddenMode(newHiddenMode);
-    
+
     if (newHiddenMode) {
       // Initialize visibility when turning on hidden mode
       const currentState = getCurrentState();
@@ -1175,7 +1175,7 @@ const BirdSortSolver = () => {
         return branches; // First move, show initial state
       }
     }
-    
+
     // Normal state display (not animating)
     if (solution.length === 0) {
       if (discoveryMode && discoveryMoves.length > 0 && discoveryStep > 0) {
@@ -1212,7 +1212,7 @@ const BirdSortSolver = () => {
   const currentState = getCurrentState();
   const birdCounts = countBirds();
   const exposedPositions = discoveryMode ? findExposedHiddenPositions(currentState) : [];
-  const totalBirds = originalPositions.length > 0 
+  const totalBirds = originalPositions.length > 0
     ? originalPositions.reduce((sum, b) => sum + b.length, 0)
     : 0;
 
@@ -1225,13 +1225,13 @@ const BirdSortSolver = () => {
 
         <div className="flex flex-col lg:grid lg:grid-cols-3 gap-3 sm:gap-4 lg:gap-6">
           <div className="lg:col-span-2 space-y-3 sm:space-y-4 lg:space-y-6">
-            <div className="bg-white rounded-lg shadow-lg p-2 sm:p-3 lg:p-4">
+            <div className="bg-white rounded-xl shadow-lg p-2 sm:p-3 lg:p-4">
               {message && (
                 <div className="mb-4 p-3 bg-blue-50 border-2 border-blue-300 rounded text-sm text-blue-900">
                   {message}
                 </div>
               )}
-              
+
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-2">
@@ -1271,7 +1271,7 @@ const BirdSortSolver = () => {
                     <RotateCcw size={16} /> Reset
                   </button>
                 </div>
-                
+
                 {/* Bird Size Control - Hidden on mobile where size is fixed */}
                 <div className="hidden sm:flex items-center gap-2 mt-3">
                   <label className="text-xs font-semibold text-gray-700">
@@ -1294,25 +1294,23 @@ const BirdSortSolver = () => {
                 {!discoveryMode && (
                   <button
                     onClick={() => setEditMode(!editMode)}
-                    className={`flex-1 px-4 py-2 rounded font-semibold transition ${
-                      editMode
+                    className={`flex-1 px-4 py-2 rounded font-semibold transition ${editMode
                         ? "bg-purple-600 text-white hover:bg-purple-700"
                         : "bg-gray-200 text-gray-700 hover:bg-gray-300"
-                    }`}
+                      }`}
                     disabled={solution.length > 0}
                   >
                     {editMode ? "✏️ Edit Mode Active" : "✏️ Enable Edit Mode"}
                   </button>
                 )}
-                
+
                 {!editMode && !solution.length && (
                   <button
                     onClick={discoveryMode ? exitDiscoveryMode : enableDiscoveryMode}
-                    className={`flex-1 px-4 py-2 rounded font-semibold transition ${
-                      discoveryMode
+                    className={`flex-1 px-4 py-2 rounded font-semibold transition ${discoveryMode
                         ? "bg-orange-600 text-white hover:bg-orange-700"
                         : "bg-indigo-600 text-white hover:bg-indigo-700"
-                    }`}
+                      }`}
                   >
                     {discoveryMode ? "🔓 Exit Discovery Mode" : "🔍 Enable Discovery Mode"}
                   </button>
@@ -1357,7 +1355,7 @@ const BirdSortSolver = () => {
                         setUnsurePositions(new Set());
                       }
                     }}
-                    className="w-full px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 transition font-semibold"
+                    className="w-full px-4 py-2 bg-red-600 text-white rounded-xl hover:bg-red-700 transition font-semibold"
                   >
                     🗑️ Clear All Birds
                   </button>
@@ -1370,9 +1368,9 @@ const BirdSortSolver = () => {
                     🔍 Discovery Mode: {Object.keys(discoveredBirds).length}/{totalBirds} discovered
                   </p>
                   <p className="text-xs text-orange-700">
-                    1. Click "Find Next Hidden"<br/>
-                    2. Step through moves<br/>
-                    3. Look at tablet to see what bird is there<br/>
+                    1. Click "Find Next Hidden"<br />
+                    2. Step through moves<br />
+                    3. Look at tablet to see what bird is there<br />
                     4. Select that bird and click (?)
                   </p>
                 </div>
@@ -1381,7 +1379,7 @@ const BirdSortSolver = () => {
               {discoveryMode && Object.keys(discoveredBirds).length < totalBirds && (
                 <button
                   onClick={findNextHiddenBird}
-                  className="w-full flex items-center justify-center gap-2 px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition text-lg font-semibold mb-4"
+                  className="w-full flex items-center justify-center gap-2 px-6 py-3 bg-blue-600 text-white rounded-xl hover:bg-blue-700 transition text-lg font-semibold mb-4"
                 >
                   <Lightbulb size={24} /> Find Next Hidden
                 </button>
@@ -1392,14 +1390,14 @@ const BirdSortSolver = () => {
                   <div className="flex gap-2">
                     <button
                       onClick={solvePuzzle}
-                      className="flex-1 flex items-center justify-center gap-2 px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition text-lg font-semibold"
+                      className="flex-1 flex items-center justify-center gap-2 px-6 py-3 bg-blue-600 text-white rounded-xl hover:bg-blue-700 transition text-lg font-semibold"
                     >
                       <Play size={24} /> Solve Puzzle
                     </button>
                   </div>
-                  
+
                   {/* Database File Section */}
-                  <div className="p-3 bg-gray-50 rounded-lg border-2 border-gray-200">
+                  <div className="p-3 bg-gray-50 rounded-xl border-2 border-gray-200">
                     <p className="text-xs font-semibold text-gray-700 mb-2">Database File:</p>
                     <div className="grid grid-cols-2 gap-2 mb-2">
                       <button
@@ -1481,7 +1479,7 @@ const BirdSortSolver = () => {
               )}
             </div>
 
-            <div className="bg-white rounded-lg shadow-lg p-2 sm:p-3 lg:p-4">
+            <div className="bg-white rounded-xl shadow-lg p-2 sm:p-3 lg:p-4">
               <div className="grid grid-cols-2 gap-x-1 sm:gap-x-3 lg:gap-x-6 gap-y-2 sm:gap-y-3 lg:gap-y-4">
                 {currentState.map((branch, branchIndex) => {
                   const isOddBranch = branchIndex % 2 === 0;
@@ -1501,11 +1499,11 @@ const BirdSortSolver = () => {
                       <div className="text-[10px] sm:text-xs font-bold text-gray-600 text-center mb-0.5 sm:mb-1">
                         {displayNumber}
                       </div>
-                      
+
                       {/* Birds sitting on branch */}
                       <div className="relative">
                         {/* Birds container */}
-                        <div 
+                        <div
                           className={`flex items-end gap-0.5 sm:gap-1 pb-0.5 sm:pb-1 ${isOddBranch ? "" : "flex-row-reverse"}`}
                           onClick={() => !editMode && handleBranchClick(branchIndex)}
                         >
@@ -1516,10 +1514,10 @@ const BirdSortSolver = () => {
                               const isExposed = discoveryMode && exposedPositions.some(
                                 pos => pos.branchIndex === branchIndex && pos.positionIndex === i
                               );
-                              const isTarget = discoveryMode && targetHiddenPosition && 
-                                targetHiddenPosition.branchIndex === branchIndex && 
+                              const isTarget = discoveryMode && targetHiddenPosition &&
+                                targetHiddenPosition.branchIndex === branchIndex &&
                                 targetHiddenPosition.positionIndex === i;
-                              
+
                               // Check if bird is visible in hidden mode
                               const isVisible = isBirdVisible(branchIndex, i);
 
@@ -1546,13 +1544,13 @@ const BirdSortSolver = () => {
                                 isBirdTo =
                                   isToBranch &&
                                   i >=
-                                    branch.filter((b) => b).length -
-                                      (solution[currentStep - 1]?.birdsToMove ||
-                                        1) &&
+                                  branch.filter((b) => b).length -
+                                  (solution[currentStep - 1]?.birdsToMove ||
+                                    1) &&
                                   i < branch.filter((b) => b).length;
                               }
                               // Don't highlight from/to in discovery mode (removed)
-                              
+
                               const isUnsure = !discoveryMode && unsurePositions.has(
                                 `${branchIndex}-${i}`,
                               );
@@ -1563,19 +1561,18 @@ const BirdSortSolver = () => {
                                   ref={(el) => {
                                     if (el) birdRefs.current[`${branchIndex}-${i}`] = el;
                                   }}
-                                  className={`rounded-lg border-2 flex-shrink-0 relative ${
-                                    isHidden
+                                  className={`rounded-xl border-2 flex-shrink-0 relative ${isHidden
                                       ? isExposed
                                         ? "border-yellow-400 border-dashed cursor-pointer hover:ring-2 hover:ring-yellow-500 bg-yellow-50"
                                         : isTarget
-                                        ? "border-blue-500 border-dashed bg-blue-50"
-                                        : "border-gray-400 border-dashed bg-gray-200"
+                                          ? "border-blue-500 border-dashed bg-blue-50"
+                                          : "border-gray-400 border-dashed bg-gray-200"
                                       : bird && !isVisible
-                                      ? "border-gray-400 bg-gray-400"
-                                      : bird
-                                      ? "border-gray-400 shadow-md cursor-pointer hover:ring-2 hover:ring-purple-400"
-                                      : "border-dashed border-gray-300 cursor-pointer hover:bg-purple-100"
-                                  } ${editMode || (discoveryMode && isExposed) ? "cursor-pointer" : ""} ${isBirdFrom ? "ring-4 ring-red-500 opacity-50" : ""} ${isBirdTo ? "ring-4 ring-green-500" : ""} ${isTarget ? "ring-4 ring-blue-500 animate-pulse" : ""}`}
+                                        ? "border-gray-400 bg-gray-400"
+                                        : bird
+                                          ? "border-gray-400 shadow-md cursor-pointer hover:ring-2 hover:ring-purple-400"
+                                          : "border-dashed border-gray-300 cursor-pointer hover:bg-purple-100"
+                                    } ${editMode || (discoveryMode && isExposed) ? "cursor-pointer" : ""} ${isBirdFrom ? "ring-4 ring-red-500 opacity-50" : ""} ${isBirdTo ? "ring-4 ring-green-500" : ""} ${isTarget ? "ring-4 ring-blue-500 animate-pulse" : ""}`}
                                   style={{
                                     width: `${responsiveBirdSize}px`,
                                     height: `${responsiveBirdSize}px`,
@@ -1586,8 +1583,8 @@ const BirdSortSolver = () => {
                                     } : {}),
                                     ...(isUnsure && !discoveryMode
                                       ? {
-                                          boxShadow: `0 0 0 4px ${unsureColor}`,
-                                        }
+                                        boxShadow: `0 0 0 4px ${unsureColor}`,
+                                      }
                                       : {}),
                                     transition: 'all 0.3s ease-out',
                                   }}
@@ -1606,15 +1603,15 @@ const BirdSortSolver = () => {
                                       ? isExposed
                                         ? "Click to place bird here!"
                                         : isTarget
-                                        ? "🎯 Target: This hidden bird will be revealed"
-                                        : "Hidden bird"
+                                          ? "🎯 Target: This hidden bird will be revealed"
+                                          : "Hidden bird"
                                       : bird && !isVisible
-                                      ? "Hidden bird - will be revealed"
-                                      : isUnsure
-                                      ? "Unsure position (right-click to remove)"
-                                      : bird
-                                        ? `${bird} (right-click to mark unsure)`
-                                        : "Empty spot (right-click to mark unsure)"
+                                        ? "Hidden bird - will be revealed"
+                                        : isUnsure
+                                          ? "Unsure position (right-click to remove)"
+                                          : bird
+                                            ? `${bird} (right-click to mark unsure)`
+                                            : "Empty spot (right-click to mark unsure)"
                                   }
                                 >
                                   {isHidden && isExposed && (
@@ -1632,25 +1629,24 @@ const BirdSortSolver = () => {
                             },
                           )}
                         </div>
-                        
+
                         {/* Brown branch line */}
-                        <div 
-                          className={`h-1 sm:h-2 rounded-full ${
-                            selectedBranch === branchIndex
+                        <div
+                          className={`h-1 sm:h-2 rounded-full ${selectedBranch === branchIndex
                               ? "bg-blue-700"
                               : isFromBranch
-                              ? "bg-red-700"
-                              : isToBranch
-                              ? "bg-green-700"
-                              : "bg-amber-800"
-                          }`}
+                                ? "bg-red-700"
+                                : isToBranch
+                                  ? "bg-green-700"
+                                  : "bg-amber-800"
+                            }`}
                           style={{
                             transition: 'all 0.5s cubic-bezier(0.4, 0, 0.2, 1)',
                             transform: isFromBranch ? 'translateX(-4px)' : isToBranch ? 'translateX(4px)' : 'translateX(0)',
                           }}
                         />
                       </div>
-                      
+
                     </div>
                   );
                 })}
@@ -1658,7 +1654,7 @@ const BirdSortSolver = () => {
             </div>
 
             {discoveryMoves.length > 0 && discoveryMode && (
-              <div className="bg-white rounded-lg shadow-lg p-4">
+              <div className="bg-white rounded-xl shadow-lg p-4">
                 <h3 className="font-bold text-gray-800 mb-2">Expose Hidden Bird</h3>
                 <div className="flex items-center justify-center gap-4">
                   <button
@@ -1688,7 +1684,7 @@ const BirdSortSolver = () => {
             )}
 
             {solution.length > 0 && (
-              <div className="bg-white rounded-lg shadow-lg p-4">
+              <div className="bg-white rounded-xl shadow-lg p-4">
                 <div className="flex items-center justify-between mb-4">
                   <h2 className="text-lg font-bold text-gray-800">
                     Solution: {solution.length} moves
@@ -1704,17 +1700,16 @@ const BirdSortSolver = () => {
                     Close
                   </button>
                 </div>
-                
+
                 {/* Playback Controls */}
                 <div className="mb-4 p-3 bg-blue-50 rounded border-2 border-blue-200">
                   <div className="flex items-center gap-4 mb-3">
                     <button
                       onClick={togglePlayback}
-                      className={`flex items-center gap-2 px-4 py-2 rounded font-semibold transition ${
-                        isPlaying
+                      className={`flex items-center gap-2 px-4 py-2 rounded font-semibold transition ${isPlaying
                           ? "bg-red-500 text-white hover:bg-red-600"
                           : "bg-green-500 text-white hover:bg-green-600"
-                      }`}
+                        }`}
                     >
                       {isPlaying ? (
                         <>
@@ -1732,11 +1727,10 @@ const BirdSortSolver = () => {
                     </button>
                     <button
                       onClick={toggleHiddenMode}
-                      className={`flex items-center gap-2 px-4 py-2 rounded font-semibold transition ${
-                        hiddenMode
+                      className={`flex items-center gap-2 px-4 py-2 rounded font-semibold transition ${hiddenMode
                           ? "bg-indigo-600 text-white hover:bg-indigo-700"
                           : "bg-gray-400 text-white hover:bg-gray-500"
-                      }`}
+                        }`}
                       title={hiddenMode ? "Birds will be revealed progressively" : "All birds visible"}
                     >
                       {hiddenMode ? <Eye size={16} /> : <EyeOff size={16} />}
@@ -1769,24 +1763,24 @@ const BirdSortSolver = () => {
                     </div>
                   </div>
                 </div>
-                
+
                 {/* Manual Step Controls */}
                 <div className="flex items-center justify-center gap-4">
                   <button
                     onClick={() => {
                       const newStep = Math.max(0, currentStep - 1);
                       setCurrentStep(newStep);
-                      
+
                       // Update visibility map to previous state when going backwards in hidden mode
                       if (hiddenMode && newStep > 0) {
                         const prevState = newStep > 1 ? solution[newStep - 2].state : branches;
                         let newVisibility = initializeVisibilityMap(branches);
-                        
+
                         // Replay all moves up to the previous step
                         for (let i = 0; i < newStep - 1; i++) {
                           newVisibility = updateVisibilityAfterMove(solution[i].state, newVisibility);
                         }
-                        
+
                         setBirdVisibility(newVisibility);
                       } else if (hiddenMode && newStep === 0) {
                         // Reset to initial visibility
@@ -1822,7 +1816,7 @@ const BirdSortSolver = () => {
           </div>
 
           <div className="lg:col-span-1">
-            <div className="bg-white rounded-lg shadow-lg p-4 sticky top-4">
+            <div className="bg-white rounded-xl shadow-lg p-4 sticky top-4">
               <h2 className="text-xl font-bold mb-4 text-gray-800">
                 {discoveryMode ? "Select Bird to Place" : "Bird Palette"}
               </h2>
@@ -1834,11 +1828,10 @@ const BirdSortSolver = () => {
                   >
                     <div className="relative">
                       <div
-                        className={`rounded-lg border-2 shadow-md cursor-pointer hover:scale-105 transition ${
-                          selectedBirdType === birdType && (editMode || discoveryMode)
+                        className={`rounded-xl border-2 shadow-md cursor-pointer hover:scale-105 transition ${selectedBirdType === birdType && (editMode || discoveryMode)
                             ? "border-purple-500 ring-4 ring-purple-300"
                             : "border-gray-400"
-                        }`}
+                          }`}
                         style={{
                           width: `${responsiveBirdSize}px`,
                           height: `${responsiveBirdSize}px`,
@@ -1881,7 +1874,7 @@ const BirdSortSolver = () => {
               </div>
 
               <p className="text-xs text-gray-600 mt-4">
-                💡 {discoveryMode 
+                💡 {discoveryMode
                   ? "Select bird from your tablet, then click (?) to place it"
                   : "In edit mode: click to select. Outside: click to upload images"}
               </p>
@@ -1892,7 +1885,7 @@ const BirdSortSolver = () => {
         {/* Save Game Dialog */}
         {showSaveDialog && (
           <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-            <div className="bg-white rounded-lg shadow-2xl p-6 max-w-md w-full mx-4">
+            <div className="bg-white rounded-xl shadow-2xl p-6 max-w-md w-full mx-4">
               <h2 className="text-2xl font-bold mb-4 text-gray-800">
                 💾 Save Game to Database
               </h2>
@@ -1905,14 +1898,14 @@ const BirdSortSolver = () => {
                 value={puzzleName}
                 onChange={(e) => setPuzzleName(e.target.value)}
                 onKeyPress={(e) => e.key === "Enter" && saveGameToDatabase()}
-                className="w-full px-4 py-2 border-2 border-gray-300 rounded-lg mb-4 focus:border-blue-500 focus:outline-none"
+                className="w-full px-4 py-2 border-2 border-gray-300 rounded-xl mb-4 focus:border-blue-500 focus:outline-none"
                 autoFocus
               />
               <div className="flex gap-2">
                 <button
                   onClick={saveGameToDatabase}
                   disabled={!puzzleName.trim()}
-                  className="flex-1 px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition font-semibold disabled:bg-gray-300 disabled:cursor-not-allowed"
+                  className="flex-1 px-4 py-2 bg-green-600 text-white rounded-xl hover:bg-green-700 transition font-semibold disabled:bg-gray-300 disabled:cursor-not-allowed"
                 >
                   Save to Database
                 </button>
@@ -1921,7 +1914,7 @@ const BirdSortSolver = () => {
                     setShowSaveDialog(false);
                     setPuzzleName("");
                   }}
-                  className="flex-1 px-4 py-2 bg-gray-500 text-white rounded-lg hover:bg-gray-600 transition"
+                  className="flex-1 px-4 py-2 bg-gray-500 text-white rounded-xl hover:bg-gray-600 transition"
                 >
                   Cancel
                 </button>
@@ -1936,7 +1929,7 @@ const BirdSortSolver = () => {
         {/* Load Dialog */}
         {showLoadDialog && (
           <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-            <div className="bg-white rounded-lg shadow-2xl p-6 max-w-2xl w-full mx-4 max-h-[80vh] overflow-hidden flex flex-col">
+            <div className="bg-white rounded-xl shadow-2xl p-6 max-w-2xl w-full mx-4 max-h-[80vh] overflow-hidden flex flex-col">
               <h2 className="text-2xl font-bold mb-4 text-gray-800">
                 📂 Load Game from Database
               </h2>
@@ -1954,7 +1947,7 @@ const BirdSortSolver = () => {
                     {database.puzzles.map((puzzle, index) => (
                       <div
                         key={index}
-                        className="flex items-center justify-between p-3 border-2 border-gray-200 rounded-lg hover:border-blue-400 transition"
+                        className="flex items-center justify-between p-3 border-2 border-gray-200 rounded-xl hover:border-blue-400 transition"
                       >
                         <div className="flex-1">
                           <h3 className="font-semibold text-gray-800">
@@ -2000,7 +1993,7 @@ const BirdSortSolver = () => {
 
               <button
                 onClick={() => setShowLoadDialog(false)}
-                className="w-full px-4 py-2 bg-gray-500 text-white rounded-lg hover:bg-gray-600 transition"
+                className="w-full px-4 py-2 bg-gray-500 text-white rounded-xl hover:bg-gray-600 transition"
               >
                 Close
               </button>
@@ -2027,7 +2020,7 @@ const BirdSortSolver = () => {
         {/* Flying Birds Overlay */}
         {flyingBirds.map((flyingBird, birdIndex) => {
           const fromRef = birdRefs.current[`${flyingBird.fromBranch}-${flyingBird.fromPosition}`];
-          
+
           // Get the actual destination state (after the move completes)
           let destinationState;
           if (solution.length > 0 && currentStep > 0) {
@@ -2037,13 +2030,13 @@ const BirdSortSolver = () => {
           } else {
             return null;
           }
-          
+
           if (!fromRef) return null;
-          
+
           // Calculate destination position in the new state
           const toBranchState = destinationState[flyingBird.toBranch];
           if (!toBranchState) return null;
-          
+
           // Find the ACTUAL positions where birds exist in the destination state
           // We need to map birdIndex to the actual array position in toBranchState
           const nonNullPositions = [];
@@ -2052,22 +2045,22 @@ const BirdSortSolver = () => {
               nonNullPositions.push(i);
             }
           }
-          
+
           // Birds are added to the top (end) of the array
           // birdIndex 0 is the first bird to fly (was at the top of source), goes to top of destination
           // So it should be at the LAST position in nonNullPositions
           const reversedIndex = nonNullPositions.length - 1 - birdIndex;
           if (reversedIndex < 0 || reversedIndex >= nonNullPositions.length) return null;
-          
+
           const toPositionIndex = nonNullPositions[reversedIndex];
-          
+
           // Get source ref
           const fromRect = fromRef.getBoundingClientRect();
-          
+
           // NEW APPROACH: Calculate destination from branch container position
           // Find the branch container itself for more reliable positioning
           let branchContainer = null;
-          
+
           // Try to find any bird on the destination branch to get to its parent container
           for (let i = 0; i < birdsPerBranch; i++) {
             const ref = birdRefs.current[`${flyingBird.toBranch}-${i}`];
@@ -2077,24 +2070,24 @@ const BirdSortSolver = () => {
               break;
             }
           }
-          
+
           if (!branchContainer) return null;
-          
+
           const containerRect = branchContainer.getBoundingClientRect();
-          
+
           // Calculate where the bird should land
           // Match the gap values from CSS: gap-0.5 (2px) on mobile, gap-1 (4px) on larger
           const birdGap = window.innerWidth < 640 ? 2 : 4;
-          
+
           // Determine if branch is odd or even (for left/right positioning)
           const isOddBranch = flyingBird.toBranch % 2 === 0;
-          
+
           let toX, toY;
           // Y position: birds sit at the bottom of the container
           // pb-0.5 (2px) on mobile, pb-1 (4px) on larger
           const paddingBottom = window.innerWidth < 640 ? 2 : 4;
           toY = containerRect.bottom - responsiveBirdSize - paddingBottom;
-          
+
           // X position: calculate from container edge based on position index
           if (isOddBranch) {
             // Odd branches: grow left to right from container left edge
@@ -2103,18 +2096,18 @@ const BirdSortSolver = () => {
             // Even branches with flex-row-reverse: grow right to left from container right edge
             toX = containerRect.right - (toPositionIndex + 1) * (responsiveBirdSize + birdGap) + birdGap;
           }
-          
+
           const deltaX = toX - fromRect.left;
           const deltaY = toY - fromRect.top;
-          
+
           // Calculate midpoint for arc
           const midX = deltaX / 2;
           const midY = deltaY / 2 - 50; // 50px arc upward
-          
+
           return (
             <div
               key={flyingBird.id}
-              className="fixed rounded-lg border-2 border-gray-400 shadow-2xl pointer-events-none"
+              className="fixed rounded-xl border-2 border-gray-400 shadow-2xl pointer-events-none"
               style={{
                 width: `${responsiveBirdSize}px`,
                 height: `${responsiveBirdSize}px`,
