@@ -127,7 +127,7 @@ const countConsecutiveKnownBirds = (branch) => {
   return count;
 };
 
-const findMovesToExposeHidden = (initialBranches, birdsPerBranch, maxDepth = 20) => {
+const findMovesToExposeHidden = (initialBranches, birdsPerBranch, maxDepth = 30) => {
   const currentExposed = findExposedHiddenPositions(initialBranches);
   if (currentExposed.length > 0) {
     return { success: true, moves: [], exposedPosition: currentExposed[0] };
@@ -1295,8 +1295,8 @@ const BirdSortSolver = () => {
                   <button
                     onClick={() => setEditMode(!editMode)}
                     className={`flex-1 px-4 py-2 rounded font-semibold transition ${editMode
-                        ? "bg-purple-600 text-white hover:bg-purple-700"
-                        : "bg-gray-200 text-gray-700 hover:bg-gray-300"
+                      ? "bg-purple-600 text-white hover:bg-purple-700"
+                      : "bg-gray-200 text-gray-700 hover:bg-gray-300"
                       }`}
                     disabled={solution.length > 0}
                   >
@@ -1308,8 +1308,8 @@ const BirdSortSolver = () => {
                   <button
                     onClick={discoveryMode ? exitDiscoveryMode : enableDiscoveryMode}
                     className={`flex-1 px-4 py-2 rounded font-semibold transition ${discoveryMode
-                        ? "bg-orange-600 text-white hover:bg-orange-700"
-                        : "bg-indigo-600 text-white hover:bg-indigo-700"
+                      ? "bg-orange-600 text-white hover:bg-orange-700"
+                      : "bg-indigo-600 text-white hover:bg-indigo-700"
                       }`}
                   >
                     {discoveryMode ? "🔓 Exit Discovery Mode" : "🔍 Enable Discovery Mode"}
@@ -1562,16 +1562,16 @@ const BirdSortSolver = () => {
                                     if (el) birdRefs.current[`${branchIndex}-${i}`] = el;
                                   }}
                                   className={`rounded-xl border-2 flex-shrink-0 relative ${isHidden
-                                      ? isExposed
-                                        ? "border-yellow-400 border-dashed cursor-pointer hover:ring-2 hover:ring-yellow-500 bg-yellow-50"
-                                        : isTarget
-                                          ? "border-blue-500 border-dashed bg-blue-50"
-                                          : "border-gray-400 border-dashed bg-gray-200"
-                                      : bird && !isVisible
-                                        ? "border-gray-400 bg-gray-400"
-                                        : bird
-                                          ? "border-gray-400 shadow-md cursor-pointer hover:ring-2 hover:ring-purple-400"
-                                          : "border-dashed border-gray-300 cursor-pointer hover:bg-purple-100"
+                                    ? isExposed
+                                      ? "border-yellow-400 border-dashed cursor-pointer hover:ring-2 hover:ring-yellow-500 bg-yellow-50"
+                                      : isTarget
+                                        ? "border-blue-500 border-dashed bg-blue-50"
+                                        : "border-gray-400 border-dashed bg-gray-200"
+                                    : bird && !isVisible
+                                      ? "border-gray-400 bg-gray-400"
+                                      : bird
+                                        ? "border-gray-400 shadow-md cursor-pointer hover:ring-2 hover:ring-purple-400"
+                                        : "border-dashed border-gray-300 cursor-pointer hover:bg-purple-100"
                                     } ${editMode || (discoveryMode && isExposed) ? "cursor-pointer" : ""} ${isBirdFrom ? "ring-4 ring-red-500 opacity-50" : ""} ${isBirdTo ? "ring-4 ring-green-500" : ""} ${isTarget ? "ring-4 ring-blue-500 animate-pulse" : ""}`}
                                   style={{
                                     width: `${responsiveBirdSize}px`,
@@ -1633,12 +1633,12 @@ const BirdSortSolver = () => {
                         {/* Brown branch line */}
                         <div
                           className={`h-1 sm:h-2 rounded-full ${selectedBranch === branchIndex
-                              ? "bg-blue-700"
-                              : isFromBranch
-                                ? "bg-red-700"
-                                : isToBranch
-                                  ? "bg-green-700"
-                                  : "bg-amber-800"
+                            ? "bg-blue-700"
+                            : isFromBranch
+                              ? "bg-red-700"
+                              : isToBranch
+                                ? "bg-green-700"
+                                : "bg-amber-800"
                             }`}
                           style={{
                             transition: 'all 0.5s cubic-bezier(0.4, 0, 0.2, 1)',
@@ -1707,8 +1707,8 @@ const BirdSortSolver = () => {
                     <button
                       onClick={togglePlayback}
                       className={`flex items-center gap-2 px-4 py-2 rounded font-semibold transition ${isPlaying
-                          ? "bg-red-500 text-white hover:bg-red-600"
-                          : "bg-green-500 text-white hover:bg-green-600"
+                        ? "bg-red-500 text-white hover:bg-red-600"
+                        : "bg-green-500 text-white hover:bg-green-600"
                         }`}
                     >
                       {isPlaying ? (
@@ -1728,8 +1728,8 @@ const BirdSortSolver = () => {
                     <button
                       onClick={toggleHiddenMode}
                       className={`flex items-center gap-2 px-4 py-2 rounded font-semibold transition ${hiddenMode
-                          ? "bg-indigo-600 text-white hover:bg-indigo-700"
-                          : "bg-gray-400 text-white hover:bg-gray-500"
+                        ? "bg-indigo-600 text-white hover:bg-indigo-700"
+                        : "bg-gray-400 text-white hover:bg-gray-500"
                         }`}
                       title={hiddenMode ? "Birds will be revealed progressively" : "All birds visible"}
                     >
@@ -1829,8 +1829,8 @@ const BirdSortSolver = () => {
                     <div className="relative">
                       <div
                         className={`rounded-xl border-2 shadow-md cursor-pointer hover:scale-105 transition ${selectedBirdType === birdType && (editMode || discoveryMode)
-                            ? "border-purple-500 ring-4 ring-purple-300"
-                            : "border-gray-400"
+                          ? "border-purple-500 ring-4 ring-purple-300"
+                          : "border-gray-400"
                           }`}
                         style={{
                           width: `${responsiveBirdSize}px`,
