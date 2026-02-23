@@ -1286,7 +1286,7 @@ const BirdSortSolver = () => {
                   <input
                     type="range"
                     min="32"
-                    max="64"
+                    max="76"
                     step="4"
                     value={birdSize}
                     onChange={(e) => setBirdSize(parseInt(e.target.value))}
