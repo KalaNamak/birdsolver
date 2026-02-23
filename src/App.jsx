@@ -212,8 +212,6 @@ const BirdSortSolver = () => {
   const [showSaveDialog, setShowSaveDialog] = useState(false);
   const [showLoadDialog, setShowLoadDialog] = useState(false);
   const [puzzleName, setPuzzleName] = useState("");
-  const [unsurePositions, setUnsurePositions] = useState(new Set());
-  const [unsureColor, setUnsureColor] = useState("#A855F7"); // Default purple
   const [birdSize, setBirdSize] = useState(48); // Default 48px, adjustable 32-64px
 
   // Database state - single JSON file with everything
@@ -222,7 +220,6 @@ const BirdSortSolver = () => {
       birdColors: birdColors,
       customBirdImages: {},
       birdSize: 48,
-      unsureColor: "#A855F7"
     },
     puzzles: []
   });
@@ -275,11 +272,9 @@ const BirdSortSolver = () => {
     const savedImages = localStorage.getItem("birdImages");
     const savedColors = localStorage.getItem("birdColors");
     const savedPuzzlesData = localStorage.getItem("savedPuzzles");
-    const savedUnsureColor = localStorage.getItem("unsureColor");
     if (savedImages) setCustomBirdImages(JSON.parse(savedImages));
     if (savedColors) setBirdColors(JSON.parse(savedColors));
     if (savedPuzzlesData) setSavedPuzzles(JSON.parse(savedPuzzlesData));
-    if (savedUnsureColor) setUnsureColor(savedUnsureColor);
   }, []);
 
   useEffect(() => {
@@ -289,10 +284,6 @@ const BirdSortSolver = () => {
   useEffect(() => {
     localStorage.setItem("birdColors", JSON.stringify(birdColors));
   }, [birdColors]);
-
-  useEffect(() => {
-    localStorage.setItem("unsureColor", unsureColor);
-  }, [unsureColor]);
 
   // Trigger flying animation when step changes
   useEffect(() => {
@@ -509,7 +500,6 @@ const BirdSortSolver = () => {
       branches,
       birdsPerBranch,
       solution,
-      unsurePositions: Array.from(unsurePositions),
       savedAt: new Date().toISOString()
     };
 
@@ -539,7 +529,6 @@ const BirdSortSolver = () => {
     setBirdsPerBranch(puzzleData.birdsPerBranch);
     setSolution(puzzleData.solution || []);
     setCurrentStep(0);
-    setUnsurePositions(new Set(puzzleData.unsurePositions || []));
     setPuzzleName(puzzleData.name); // Set puzzle name for status bar
     setShowLoadDialog(false);
     setEditMode(false);
@@ -553,7 +542,6 @@ const BirdSortSolver = () => {
         birdColors,
         customBirdImages,
         birdSize,
-        unsureColor,
         savedAt: new Date().toISOString()
       }
     };
@@ -575,7 +563,6 @@ const BirdSortSolver = () => {
     if (database.theme.birdColors) setBirdColors(database.theme.birdColors);
     if (database.theme.customBirdImages) setCustomBirdImages(database.theme.customBirdImages);
     if (database.theme.birdSize) setBirdSize(database.theme.birdSize);
-    if (database.theme.unsureColor) setUnsureColor(database.theme.unsureColor);
 
     alert("Theme loaded from database!");
   };
@@ -618,7 +605,6 @@ const BirdSortSolver = () => {
     setCurrentStep(0);
     setSelectedBranch(null);
     setEditMode(false);
-    setUnsurePositions(new Set());
     setDiscoveryMode(false);
     setDiscoveryMoves([]);
     setDiscoveryStep(0);
@@ -759,21 +745,6 @@ const BirdSortSolver = () => {
     } else {
       addBirdToPosition(branchIndex, positionIndex);
     }
-  };
-
-  const toggleUnsurePosition = (branchIndex, positionIndex) => {
-    if (!editMode) return;
-
-    const key = `${branchIndex}-${positionIndex}`;
-    const newUnsure = new Set(unsurePositions);
-
-    if (newUnsure.has(key)) {
-      newUnsure.delete(key);
-    } else {
-      newUnsure.add(key);
-    }
-
-    setUnsurePositions(newUnsure);
   };
 
   const handleBranchClick = (index) => {
@@ -1334,32 +1305,12 @@ const BirdSortSolver = () => {
                     selected bird
                     <br />• <strong>Left-click</strong> existing birds to remove
                     them
-                    <br />• <strong>Right-click</strong> any position to mark as
-                    "unsure"
                   </p>
-                  <div className="flex items-center gap-2 mb-3">
-                    <label className="text-xs font-semibold text-purple-900">
-                      Unsure marker color:
-                    </label>
-                    <input
-                      type="color"
-                      value={unsureColor}
-                      onChange={(e) => setUnsureColor(e.target.value)}
-                      className="w-16 h-8 rounded cursor-pointer border-2 border-purple-300"
-                      title="Change unsure marker color"
-                    />
-                    <span className="text-xs text-purple-600">
-                      (Right-click positions to highlight)
-                    </span>
-                  </div>
                   <button
                     onClick={() => {
-                      if (window.confirm("Clear all birds from all branches?")) {
-                        setBranches(branches.map(() => []));
-                        setSolution([]);
-                        setCurrentStep(0);
-                        setUnsurePositions(new Set());
-                      }
+                      setBranches(branches.map(() => []));
+                      setSolution([]);
+                      setCurrentStep(0);
                     }}
                     className="w-full px-4 py-2 bg-red-600 text-white rounded-xl hover:bg-red-700 transition font-semibold"
                   >
@@ -1557,10 +1508,6 @@ const BirdSortSolver = () => {
                               }
                               // Don't highlight from/to in discovery mode (removed)
 
-                              const isUnsure = !discoveryMode && unsurePositions.has(
-                                `${branchIndex}-${i}`,
-                              );
-
                               return (
                                 <div
                                   key={i}
@@ -1587,22 +1534,11 @@ const BirdSortSolver = () => {
                                       filter: 'blur(4px)',
                                       opacity: 0.4
                                     } : {}),
-                                    ...(isUnsure && !discoveryMode
-                                      ? {
-                                        boxShadow: `0 0 0 4px ${unsureColor}`,
-                                      }
-                                      : {}),
                                     transition: 'all 0.3s ease-out',
                                   }}
                                   onClick={(e) => {
                                     e.stopPropagation();
                                     handleBirdClick(branchIndex, i);
-                                  }}
-                                  onContextMenu={(e) => {
-                                    e.preventDefault();
-                                    if (editMode && !discoveryMode) {
-                                      toggleUnsurePosition(branchIndex, i);
-                                    }
                                   }}
                                   title={
                                     isHidden
@@ -1613,11 +1549,9 @@ const BirdSortSolver = () => {
                                           : "Hidden bird"
                                       : bird && !isVisible
                                         ? "Hidden bird - will be revealed"
-                                        : isUnsure
-                                          ? "Unsure position (right-click to remove)"
-                                          : bird
-                                            ? `${bird} (right-click to mark unsure)`
-                                            : "Empty spot (right-click to mark unsure)"
+                                        : bird
+                                          ? `${bird}`
+                                          : "Empty spot"
                                   }
                                 >
                                   {isHidden && isExposed && (
