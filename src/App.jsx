@@ -352,16 +352,22 @@ const BirdSortSolver = () => {
     }
   }, [currentStep, discoveryStep, solution.length, discoveryMoves.length, solution, discoveryMoves, branches, hiddenMode, discoveryMode]);
 
-  const getBirdStyle = (birdType) => {
+  const getBirdStyle = (birdType, branchIndex) => {
+
+    const shouldFlip = branchIndex !== undefined && branchIndex % 2 !== 0;
     if (!birdType) return {};
     if (customBirdImages[birdType]) {
       return {
         backgroundImage: `url(${customBirdImages[birdType]})`,
         backgroundSize: "cover",
         backgroundPosition: "center",
+        transform: shouldFlip ? "scaleX(-1)" : "none",
       };
     }
-    return { backgroundColor: birdColors[birdType] || "#999999" };
+    return {
+      backgroundColor: birdColors[birdType] || "#999999",
+      transform: shouldFlip ? "scaleX(-1)" : "none",
+    };
   };
 
   const countBirds = () => {
@@ -1576,7 +1582,7 @@ const BirdSortSolver = () => {
                                   style={{
                                     width: `${responsiveBirdSize}px`,
                                     height: `${responsiveBirdSize}px`,
-                                    ...(!isHidden && bird && isVisible ? getBirdStyle(bird) : {}),
+                                    ...(!isHidden && bird && isVisible ? getBirdStyle(bird, branchIndex) : {}),
                                     ...(bird && !isVisible && !isHidden ? {
                                       filter: 'blur(4px)',
                                       opacity: 0.4
@@ -1835,7 +1841,7 @@ const BirdSortSolver = () => {
                         style={{
                           width: `${responsiveBirdSize}px`,
                           height: `${responsiveBirdSize}px`,
-                          ...getBirdStyle(birdType)
+                          ...getBirdStyle(birdType, undefined)
                         }}
                         onClick={() => {
                           if (editMode || discoveryMode) {
@@ -2111,7 +2117,7 @@ const BirdSortSolver = () => {
               style={{
                 width: `${responsiveBirdSize}px`,
                 height: `${responsiveBirdSize}px`,
-                ...getBirdStyle(flyingBird.birdType),
+                ...getBirdStyle(flyingBird.birdType, flyingBird.toBranch),
                 left: `${fromRect.left}px`,
                 top: `${fromRect.top}px`,
                 zIndex: 9999,
