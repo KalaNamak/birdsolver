@@ -816,7 +816,7 @@ const BirdSortSolver = () => {
 
     console.log("Starting Beam Search solver with smart pouring...");
 
-    const beamWidth = 1000;
+    const beamWidth = 3000;
     let currentLevel = [
       {
         state: branches.map((b) => [...b]),
@@ -825,7 +825,7 @@ const BirdSortSolver = () => {
     ];
 
     const visited = new Set([JSON.stringify(branches)]);
-    const maxDepth = 100;
+    const maxDepth = 150;
 
     const heuristic = (state) => {
       let score = 0;
@@ -864,6 +864,20 @@ const BirdSortSolver = () => {
           const topCount = branch.filter((b) => b === topBird).length;
           if (topCount === branch.length && topCount < birdsPerBranch) {
             score += topCount * 1000;
+          }
+        }
+      });
+
+      // NEW: Reward empty branches (valuable for maneuvering)
+      const emptyBranches = state.filter(b => b.length === 0).length;
+      score += emptyBranches * 2000;
+
+      // NEW: Penalize branches that are almost full but mixed
+      state.forEach((branch) => {
+        if (branch.length >= birdsPerBranch - 1) {
+          const types = new Set(branch.filter((b) => b));
+          if (types.size > 1) {
+            score -= 5000; // Heavily penalize almost-full mixed branches
           }
         }
       });
