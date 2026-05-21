@@ -127,7 +127,7 @@ const countConsecutiveKnownBirds = (branch) => {
   return count;
 };
 
-const findMovesToExposeHidden = (initialBranches, birdsPerBranch, maxDepth = 30) => {
+const findMovesToExposeHidden = (initialBranches, birdsPerBranch, maxDepth = 50) => {
   const currentExposed = findExposedHiddenPositions(initialBranches);
   if (currentExposed.length > 0) {
     return { success: true, moves: [], exposedPosition: currentExposed[0] };
