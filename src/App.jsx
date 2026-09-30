@@ -816,7 +816,7 @@ const BirdSortSolver = () => {
 
     console.log("Starting Beam Search solver with smart pouring...");
 
-    const beamWidth = 3000;
+    const beamWidth = 8000;
     let currentLevel = [
       {
         state: branches.map((b) => [...b]),
@@ -825,7 +825,7 @@ const BirdSortSolver = () => {
     ];
 
     const visited = new Set([JSON.stringify(branches)]);
-    const maxDepth = 150;
+    const maxDepth = 200;
 
     const heuristic = (state) => {
       let score = 0;
@@ -961,6 +961,12 @@ const BirdSortSolver = () => {
               ) {
                 continue;
               }
+              const isSourceAlreadyComplete = fromBranch.length === birdsPerBranch &&
+                fromBranch.every((b) => b === topBird);
+              if (isSourceAlreadyComplete) {
+                continue;
+              }
+
 
               const sameCount = fromBranch.filter((b) => b === topBird).length;
               if (sameCount === fromBranch.length && fromBranch.length > 1) {
